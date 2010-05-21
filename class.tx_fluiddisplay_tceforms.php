@@ -53,7 +53,8 @@ class tx_fluiddisplay_tceforms {
 			// Get the related (primary) provider
 			$provider = $this->getRelatedProvider($PA['row']);
 			try {
-				$fieldsArray = $provider->getTablesAndFields();
+				#$fieldsArray = $provider->getTablesAndFields();
+				$fieldsArray = array();
 				
 
 				#$GLOBALS['TBE_TEMPLATE']->loadJavascriptLib('js/common.js');
@@ -251,7 +252,7 @@ class tx_fluiddisplay_tceforms {
 			$controller = t3lib_div::makeInstanceService('datacontroller', $relatedRecords[0][$field]);
 			$controller->loadData($uid);
 				// NOTE: getPrimaryProvider() may throw an exception, but we just let it pass at this point
-			$provider = $controller->getPrimaryProvider();
+			#$provider = $controller->getPrimaryProvider();
 			return $provider;
 		}
 	}

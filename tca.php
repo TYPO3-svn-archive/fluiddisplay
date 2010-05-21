@@ -47,13 +47,16 @@ $TCA['tx_fluiddisplay_displays'] = array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.mappings',
 			'config' => array(
-				'type' => 'user',
-				'userFunc' => 'tx_fluiddisplay_tceforms->mappingField',
+				#'type' => 'user',
+				#'userFunc' => 'tx_fluiddisplay_tceforms->mappingField',
+				'type' => 'text',
+				'cols' => '40',
+				'rows' => '4',
 			)
 		),
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, mappings, description')
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, template, mappings, description')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -63,12 +66,9 @@ $TCA['tx_fluiddisplay_displays'] = array(
 t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.debug;10","","after:description");
 t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.pagebrowser;20","","after:description");
 
-$TCA['tx_fluiddisplay_displays']['palettes']['10'] = array(
-	"showitem" => "debug_markers, debug_template_structure, debug_data_structure",
-	"canNotCollapse" => 1
-);
-$TCA['tx_fluiddisplay_displays']['palettes']['20'] = array(
-	"showitem" => "pagebrowser_tpl, pagebrowser_pagesbefore, pagebrowser_pagesafter, pagebrowser_showmore, pagebrowser_showless",
-	"canNotCollapse" => 1
-);
+#$TCA['tx_fluiddisplay_displays']['palettes']['10'] = array(
+#	"showitem" => "debug_markers, debug_template_structure, debug_data_structure",
+#	"canNotCollapse" => 1
+#);
+
 ?>
