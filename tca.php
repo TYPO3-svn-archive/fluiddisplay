@@ -4,7 +4,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 $TCA['tx_fluiddisplay_displays'] = array(
 	'ctrl' => $TCA['tx_fluiddisplay_displays']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'hidden,title,description,mappings'
+		'showRecordFieldList' => 'hidden,title,description'
 	),
 	'feInterface' => $TCA['tx_fluiddisplay_displays']['feInterface'],
 	'columns' => array(
@@ -56,7 +56,7 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		),
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, template, mappings, description')
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, template, description')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')

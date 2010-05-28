@@ -125,7 +125,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	 * @return	void
 	 */
 	public function setDataStructure($structure) {
-		$this->structure = $structure;
+		$this->structure[$structure['name']] = $structure;
 	}
 
 	/**
@@ -258,13 +258,32 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
         $templateParser = Tx_Fluid_Compatibility_TemplateParserBuilder::build();
 		$objectManager = t3lib_div::makeInstance('Tx_Fluid_Compatibility_ObjectManager');
 
-		$vars['value'] = '5';
-		$vars['values'] = Array(1,2,3,4);
+
+		$vars['foo'] = array('foo' => 'it works');
+		$vars['foo'] = 'it works';
+
+		foreach ($this->structure['pages']['records'] as &$subrecords) {
+			$temp = $subrecords['sds:subtables'];
+			unset($subrecords['sds:subtables']);
+			$subrecords['sub:datastrucure'] = $temp;
+		}
+		#$temp = $this->structure['pages']['records'][0]['sds:subtables'];
+		#t3lib_div::debug($temp, '$temp');
+		#$this->structure['pages']['records'][0]['sds_subtables'] = $temp;
+
+		if (isset($GLOBALS['_GET']['debug']['structure']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
+			t3lib_div::debug($this->structure);
+		}
+		#$extutil = new Tx_Extbase_Utility_Extension;
+		#$extutil->createAutoloadRegistryForExtension('expressions', t3lib_extMgm::extPath('expressions'));
+		#$extutil->createAutoloadRegistryForExtension('fluid', t3lib_extMgm::extPath('fluid'));
+		#$vars['values'] = Array(1,2,3,4);
         $templateContent = $templateCode;
         if ($templateContent !== false) {
 			$content = $templateParser->parse($templateContent);
 
-			$variableContainer = $objectManager->create('Tx_Fluid_Core_ViewHelper_TemplateVariableContainer', $vars);
+			$variableContainer = $objectManager->create('Tx_Fluid_Core_ViewHelper_TemplateVariableContainer', $this->structure);
+			#$variableContainer = $objectManager->create('Tx_Fluid_Core_ViewHelper_TemplateVariableContainer', $vars);
 			$renderingContext = $objectManager->create('Tx_Fluid_Core_Rendering_RenderingContext');
 			$renderingContext->setTemplateVariableContainer($variableContainer);
 			$viewHelperVariableContainer = $objectManager->create('Tx_Fluid_Core_ViewHelper_ViewHelperVariableContainer');
@@ -285,7 +304,8 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 				}
 			}
             $this->result = $data;
-			return;
+
+
         }
 
 		
@@ -585,9 +605,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 //			t3lib_div::debug($templateStructure);
 //		}
 //
-//		if (isset($GLOBALS['_GET']['debug']['structure']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
-//			t3lib_div::debug($this->structure);
-//		}
 //
 //		if (isset($GLOBALS['_GET']['debug']['filter']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
 //			t3lib_div::debug($this->filter);
