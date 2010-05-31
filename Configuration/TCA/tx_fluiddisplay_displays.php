@@ -18,7 +18,7 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		),
 		'title' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.title',
+			'label' => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
@@ -27,7 +27,7 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		),
 		'description' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.description',
+			'label' => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => '40',
@@ -36,22 +36,12 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		),
 		'template' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.template',
+			'label' => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.template',
 			'config' => array(
 				'type' => 'text',
 				'cols' => '40',
 				'rows' => '4',
-			)
-		),
-		'mappings' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.mappings',
-			'config' => array(
-				#'type' => 'user',
-				#'userFunc' => 'tx_fluiddisplay_tceforms->mappingField',
-				'type' => 'text',
-				'cols' => '40',
-				'rows' => '4',
+				'default' => 'FILE:typo3conf/ext/fluiddisplay/samples/dummy.html',
 			)
 		),
 	),
@@ -63,8 +53,8 @@ $TCA['tx_fluiddisplay_displays'] = array(
 	)
 );
 
-t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.debug;10","","after:description");
-t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/locallang_db.xml:tx_fluiddisplay_displays.pagebrowser;20","","after:description");
+t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.debug;10","","after:description");
+t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.pagebrowser;20","","after:description");
 
 #$TCA['tx_fluiddisplay_displays']['palettes']['10'] = array(
 #	"showitem" => "debug_markers, debug_template_structure, debug_data_structure",

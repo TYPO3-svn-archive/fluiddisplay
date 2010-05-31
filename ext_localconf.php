@@ -6,12 +6,6 @@ t3lib_extMgm::addUserTSConfig('
 	options.saveDocNew.tx_fluiddisplay_displays=1
 ');
 
-// Register method with generic BE ajax calls handler
-// (as from TYPO3 4.2)
-
-$TYPO3_CONF_VARS['BE']['AJAX']['fluiddisplay::saveConfiguration'] = 'typo3conf/ext/fluiddisplay/class.tx_temlatedisplay_ajax.php:tx_fluiddisplay_ajax->saveConfiguration';
-$TYPO3_CONF_VARS['BE']['AJAX']['fluiddisplay::saveTemplate'] = 'typo3conf/ext/fluiddisplay/class.tx_temlatedisplay_ajax.php:tx_fluiddisplay_ajax->saveTemplate';
-
 // Register as Data Consumer service
 // Note that the subtype corresponds to the name of the database table
 t3lib_extMgm::addService($_EXTKEY,  'dataconsumer' /* sv type */,  'tx_fluiddisplay_dataconsumer' /* sv key */,
