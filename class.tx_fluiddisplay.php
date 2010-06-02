@@ -242,6 +242,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 		if (isset($GLOBALS['_GET']['debug']['structure']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
 			t3lib_div::debug($this->structure);
 		}
+
         $templateContent = $templateCode;
         if ($templateContent !== false) {
 			$content = $templateParser->parse($templateContent);
@@ -253,7 +254,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			$renderingContext->setViewHelperVariableContainer($viewHelperVariableContainer);
 			$data = $content->render($renderingContext);
 
-
+			
 			// Hook that enables to post process the output)
 			if (preg_match_all('/#{3}HOOK\.(.+)#{3}/isU', $this->result, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $match) {
@@ -552,45 +553,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 		return $filename;
 	}
 
-
-	/**
-	 * Displays in the frontend or in the devlog some debug output
-	 *
-	 * @param array $markers
-	 * @param array $templateStructure
-	 */
-//	protected function debug($markers, $templateStructure) {
-//		if (isset($GLOBALS['_GET']['debug']['markers']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
-//			t3lib_div::debug($markers);
-//		}
-//
-//		if (isset($GLOBALS['_GET']['debug']['template']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
-//			t3lib_div::debug($templateStructure);
-//		}
-//
-//
-//		if (isset($GLOBALS['_GET']['debug']['filter']) && isset($GLOBALS['TYPO3_MISC']['microtime_BE_USER_start'])) {
-//			t3lib_div::debug($this->filter);
-//		}
-//
-//		if ($this->configuration['debug'] || TYPO3_DLOG) {
-//			t3lib_div::devLog('Markers: "' . $this->consumerData['title'] . '"', $this->extKey, -1, $markers);
-//			t3lib_div::devLog('Template structure: "' . $this->consumerData['title'] . '"', $this->extKey, -1, $templateStructure);
-//			t3lib_div::devLog('Data structure: "' . $this->pObj->cObj->data['header'] . '"', $this->extKey, -1, $this->structure);
-//		}
-//
-//		if ($this->consumerData['debug_markers'] && !$this->configuration['debug']) {
-//			t3lib_div::devLog('Markers: "' . $this->consumerData['title'] . '"', $this->extKey, -1, $markers);
-//		}
-//
-//		if ($this->consumerData['debug_template_structure'] && !$this->configuration['debug']) {
-//			t3lib_div::devLog('Template structure: "' . $this->consumerData['title'] . '"', $this->extKey, -1, $templateStructure);
-//		}
-//
-//		if ($this->consumerData['debug_data_structure'] && !$this->configuration['debug']) {
-//			t3lib_div::devLog('Data structure: "' . $this->pObj->cObj->data['header'] . '"', $this->extKey, -1, $this->structure);
-//		}
-//	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fluiddisplay/class.tx_fluiddisplay.php']){
