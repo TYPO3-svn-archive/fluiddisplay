@@ -42,6 +42,16 @@ $TCA['tx_fluiddisplay_displays'] = array(
 				'cols' => '40',
 				'rows' => '4',
 				'default' => 'FILE:typo3conf/ext/fluiddisplay/samples/dummy.html',
+				'wizards' => Array(
+					'_PADDING' => 2,
+					'link' => Array(
+						'type' => 'popup',
+						'title' => 'Link',
+						'icon' => 'link_popup.gif',
+						'script' => 'browse_links.php?mode=wizard',
+						'JSopenParams' => 'height=600,width=700,status=0,menubar=0,scrollbars=1'
+					)
+				)
 			)
 		),
 	),
