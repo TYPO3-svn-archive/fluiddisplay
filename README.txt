@@ -1,0 +1,1 @@
+Tesseract Data Consumer based on Fluid templates. Refer to the manual for more details.
