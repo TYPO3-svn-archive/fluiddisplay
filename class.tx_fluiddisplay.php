@@ -181,42 +181,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 		$this->localCObj = t3lib_div::makeInstance('tslib_cObj');
 		$this->configuration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 
-//		$this->setPageTitle($this->conf);
-
 		$uniqueMarkers = array();
-
-		// Formats TypoScript configuration as array.
-//		$parseObj = t3lib_div::makeInstance('t3lib_TSparser');
-//		foreach ($datasource as $data) {
-//			if(trim($data['configuration']) != ''){
-//
-//				// Clears the setup (to avoid typoscript incrementation)
-//				$parseObj->setup = array();
-//				$parseObj->parse($data['configuration']);
-//				$data['configuration'] = $parseObj->setup;
-//			}
-//			else{
-//				$data['configuration'] = array();
-//			}
-//
-//			// Merges some data to create a new marker. Will look like: table.field
-//			$_marker = $data['table'] . '.' . $data['field'];
-//
-//			// IMPORTANT NOTICE:
-//			// The idea is to make the field unique and to be able to know which field of the database is associated
-//			// Adds to ###FIELD.xxx### the value "table.field"
-//			// Ex: [###FIELD.title###] => ###FIELD.title.pages.title###
-//			$uniqueMarkers['###' . $data['marker'] . '###'] = '###' . $data['marker'] . '.' . $_marker . '###';
-//
-//			// Builds the datasource as an associative array.
-//			// $data contains the following information: [marker], [table], [field], [type], [configuration]
-//			if (preg_match('/FIELD/', $data['marker'])) {
-//				$this->datasourceFields[$data['marker']] = $data;
-//			}
-//			else {
-//				$this->datasourceObjects[$data['marker']] = $data;
-//			}
-//		}
 
 		// ***************************************
 		// ********** BEGINS PROCESSING **********
@@ -276,269 +241,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	}
 
 	/**
-	 * Processes markers of type ###RECORD('tt_content',1)###
-	 *
-	 * @param	string	$content: the content
-	 * @return	string	$content:
-	 */
-//	protected function processRECORDS($content) {
-//
-//		if (preg_match_all("/#{3}RECORD\((.+),(.+)\)#{3}/isU", $content, $matches, PREG_SET_ORDER)) {
-//
-//			// Stores the filter. Fluiddisplay is a singleton and the filter property will be override by a child call.
-//			$GLOBALS['tesseract']['filter']['parent'] = $this->filter;
-//
-//			foreach ($matches as $match) {
-//				$marker = $match[0];
-//				$table = trim($match[1]);
-//				$uid = trim($match[2]);
-//
-//				// Avoids recursive call
-//				if ($this->pObj->cObj->data['uid'] != $uid) {
-//					$conf = array();
-//					$conf['source'] = $table.'_'.$uid;
-//					$conf['tables'] = $table;
-//					$_content = $this->localCObj->RECORDS($conf);
-//					$content = str_replace($marker, $_content, $content);
-//				}
-//			}
-//		}
-//		return $content;
-//	}
-
-	/**
-	 * Changes the page title if fluiddisplay encounters typoScript configuration.
-	 * Typoscript configuration have the insertData syntax e.g. {table.field}
-	 * This is done by changing the page title in the tslib_fe object.
-	 *
-	 * @param	array	$configuration: Local TypoScript configuration
-	 * @return	void
-	 */
-//	protected function setPageTitle($configuration) {
-//		// Checks wheter the title of the template need to be changed
-//		if ($configuration['substitutePageTitle']) {
-//			$pageTitle = $configuration['substitutePageTitle'];
-//
-//			// extracts the {table.field}
-//			if (preg_match_all('/\{(.+)\}/isU', $pageTitle, $matches, PREG_SET_ORDER)) {
-//				foreach ($matches as $match) {
-//					$expression = $match[0];
-//					$expressionInner = $match[1];
-//					$values = explode('.', $expressionInner);
-//
-//					// Checks if table name is given or not.
-//					if (count($values) == 1) {
-//						$table = $this->structure['name'];
-//						$field = $values[0];
-//					} elseif (count($values) == 2) {
-//						$table = $values[0];
-//						$field = $values[1];
-//					}
-//					$expressionResult = $this->getValueFromStructure($this->structure, 0, $table, $field);
-//					$pageTitle = str_replace($expression, $expressionResult, $pageTitle);
-//				}
-//			}
-//			$GLOBALS['TSFE']->page['title'] = $pageTitle;
-//		}
-//	}
-
-	/**
-	 * If found, returns markers of type SORT
-	 *
-	 * Example of marker: ###SORT###
-	 *
-	 * @param	string	$content HTML code
-	 * @return	string	$content transformed HTML code
-	 */
-//	protected function getSortMarkers($content) {
-//		$markers = array();
-//		if (preg_match_all('/#{3}SORT\.(.+)#{3}/isU', $content, $matches, PREG_SET_ORDER)) {
-//			foreach($matches as $match){
-//				$marker = $match[0];
-//				$markerContent = $match[1];
-//				// Get the position of the sort
-//				if (preg_match('/([0-9])$/is', $markerContent, $positions)) {
-//					$position = $positions[0];
-//				}
-//				else {
-//					$position = 1;
-//				}
-//
-//				// Gets whether it is a sort or an order
-//				if (strpos($markerContent, 'sort') !== FALSE) {
-//					$sortTable = '';
-//					if ($this->filter['orderby'][$position * 2 - 1]['table'] != '') {
-//						$sortTable = $this->filter['orderby'][$position * 2 - 1]['table'] . '.';
-//					}
-//					$markers[$marker] = $sortTable . $this->filter['orderby'][$position * 2 - 1]['field'];
-//				}
-//				else if (strpos($markerContent, 'order') !== FALSE) {
-//					$markers[$marker] = $this->filter['orderby'][$position * 2 - 1]['order'];
-//				}
-//			}
-//		}
-//		return $markers;
-//	}
-
-	/**
-	 * If found, returns markers of type SORT
-	 *
-	 * Example of marker: ###SORT###
-	 *
-	 * @param	string	$content HTML code
-	 * @return	string	$content transformed HTML code
-	 */
-//	protected function getFilterMarkers($content) {
-//		$markers = array();
-//		if (preg_match_all('/#{3}FILTER\.(.+)#{3}/isU', $content, $matches, PREG_SET_ORDER)) {
-//
-//			// Defines the filters array.
-//			// It can be the property of the object
-//			// But the filter can be given by the caller. @see method processRECORDS();
-//			$uid = $this->pObj->cObj->data['uid'];
-//			if (isset($GLOBALS['tesseract']['filter']['parent'])) {
-//				$filters = $GLOBALS['tesseract']['filter']['parent'];
-//			}
-//			else {
-//				$filters = $this->filter;
-//			}
-//
-//			// Traverse the FILTER markers
-//			foreach($matches as $match){
-//				$marker = $match[0];
-//				$markerInner = $match[1];
-//
-//				// Traverses the array and finds the value
-//				if (isset($filters['parsed']['filters'][$markerInner])) {
-//					$_filter = $filters['parsed']['filters'][$markerInner];
-//					$_filter = reset($_filter); //retrieve the cell indepantly from the key
-//					$markers[$marker] = $_filter['value'];
-//				}
-//			}
-//		}
-//		return $markers;
-//	}
-
-	/**
-	 * If found, returns all markers that correspond to subexpressions
-	 * and can be parsed using tx_expressions_parser
-	 *
-	 * Example of GP marker: ###EXPRESSION.gp|parameter###
-	 *
-	 * @param	string	$content HTML code
-	 * @return	string	$content transformed HTML code
-	 */
-//	protected function getAllExpressionMarkers($content) {
-//		$markers = array();
-//		if (preg_match_all('/#{3}EXPRESSION\.(.+)#{3}/isU', $content, $matches, PREG_SET_ORDER)) {
-//			$numberOfMatches = count($matches);
-//			if ($numberOfMatches > 0) {
-//				for ($index = 0; $index < $numberOfMatches; $index ++) {
-//					try {
-//						$markers[$matches[$index][0]] = tx_expressions_parser::evaluateExpression($matches[$index][1]);
-//					}
-//					catch (Exception $e) {
-//						continue;
-//					}
-//				}
-//			}
-//		}
-//		return $markers;
-//	}
-
-	/**
-	 * If found, returns markers, of type global template variable
-	 * Global template variable can be ###TOTAL_RECORDS### ###SUBTOTAL_RECORDS###
-	 *
-	 * @param	string	$content: HTML content
-	 * @return	 string	$content: transformed HTML content
-	 */
-//	protected function getGlobalVariablesMarkers($content) {
-//		$markers = array();
-//		if (preg_match('/#{3}TOTAL_RECORDS#{3}/isU', $content)) {
-//			$markers['###TOTAL_RECORDS###']	= $this->structure['totalCount'];
-//		}
-//		if (preg_match('/#{3}SUBTOTAL_RECORDS#{3}/isU', $content)) {
-//			$markers['###SUBTOTAL_RECORDS###']  = $this->structure['count'];
-//		}
-//
-//		if (preg_match('/#{3}RECORD_OFFSET#{3}/isU', $content)) {
-//			if (!$this->pObj->piVars['page']) {
-//				$this->pObj->piVars['page'] = 0;
-//			}
-//
-//			// Computes the record offset
-//			$recordOffset = ($this->pObj->piVars['page'] + 1) * $this->filter['limit']['max'];
-//			if ($recordOffset > $this->structure['totalCount']) {
-//				$recordOffset = $this->structure['totalCount'];
-//			}
-//			$markers['###RECORD_OFFSET###']	= $recordOffset;
-//		}
-//		return $markers;
-//	}
-
-	/**
-	 * Processe the function PAGE_STATUS
-	 *
-	 * @param	string	$content HTML code
-	 * @return	string	$content transformed HTML code if the datastructure is *not* empty.
-	 */
-//	protected function checkPageStatus($content) {
-//
-//		// Preprocesses the <!--IF(###MARKER### == '')-->, puts a '' around the marker
-//		$pattern = '/PAGE_STATUS\((.+)\)/isU';
-//		if (preg_match_all($pattern, $content, $matches, PREG_SET_ORDER)) {
-//			foreach($matches as $match) {
-//				$expression = $match[0];
-//
-//				// explode values
-//				$_match = explode(',',$match[1]);
-//
-//				// avoid possible problem
-//				$_match = array_map('trim', $_match);
-//				$errorCode = $_match[0];
-//				$redirect = $replace = '';
-//				if (isset($_match[1])) {
-//					$redirect = $_match[1];
-//				}
-//
-//				if (empty($this->structure['records'])) {
-//					switch ($errorCode) {
-//						case '301' : // 301 Moved Permanently
-//							header("Location: " . $redirect,TRUE,301);
-//							break;
-//						case '302' : // 302 Found
-//							header("Location: /" . $redirect,TRUE,302);
-//							break;
-//						case '303' : // 303 See Other
-//							header("Location: " . $redirect,TRUE,303);
-//							break;
-//						case '307' : // 307 Temporary Redirect
-//							header("Location: " . $redirect,TRUE,307);
-//							break;
-//						case '404' : // 404
-//							header("HTTP/1.1 404 Not Found");
-//							if ($redirect != '') {
-//								header("Location: " . $redirect,TRUE,302);
-//							}
-//							break;
-//						case '500' :
-//							header("HTTP/1.1 500 Internal Server Error");
-//							if ($redirect != '') {
-//								header("Location: " . $redirect,TRUE,302);
-//							}
-//							break;
-//						default :
-//							$replace = 'Sorry the status ' . $errorCode . ' is not handled yet.';
-//						}
-//					}
-//					$content = str_replace($expression, $replace, $content);
-//				}
-//			}
-//			return $content;
-//		}
-
-	/**
 	 * Extracts the filename of a path
 	 *
 	 * @param	string	$filename
@@ -551,6 +253,22 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			$filename = $fileInfo['filebody'];
 		}
 		return $filename;
+	}
+
+	/**
+	 * Displays in the frontend or in the devlog some debug output
+	 *
+	 * @return void
+	 */
+	protected function debug() {
+
+		if (isset($GLOBALS['_GET']['debug']['structure']) && $GLOBALS['TSFE']->beUserLogin) {
+			t3lib_div::debug($this->getDataStructure());
+		}
+
+		if (isset($GLOBALS['_GET']['debug']['filter']) && $GLOBALS['TSFE']->beUserLogin) {
+			t3lib_div::debug($this->getFilter());
+		}
 	}
 
 }
