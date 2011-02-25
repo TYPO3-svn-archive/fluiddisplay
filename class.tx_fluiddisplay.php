@@ -174,14 +174,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	public function startProcess() {
 
 		// Loads the template file
-
-		if (preg_match('/^FILE:/isU', $this->consumerData['template'])) {
-			$filePath = str_replace('FILE:', '', $this->consumerData['template']);
-			$filePath = t3lib_div::getFileAbsFileName($filePath);
-		}
-		else {
-			$filePath = t3lib_div::getFileAbsFileName($this->consumerData['template']);
-		}
+		$filePath = t3lib_div::getFileAbsFileName($this->consumerData['template']);
 
 		if (is_file($filePath)) {
 
@@ -190,7 +183,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			$view->assign('datastructure', $this->structure);
 			$this->result = $view->render();
 
-			// Hook that enables to post process the output)
+			// Hook that enables to post process the output
 			if (preg_match_all('/#{3}HOOK\.(.+)#{3}/isU', $this->result, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $match) {
 					$hookName = $match[1];
