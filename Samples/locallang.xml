@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type></type>
+		<description>Sample localization file for extension 'fluiddisplay'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="all_content_elements">All content elements</label>
+			<label index="number_content_elements">Number of content elements: %d</label>
+			<label index="content_of_type">Elements of type %s</label>
+			<label index="plugin_of_type">Plugins of type %s</label>
+			<label index="expression_view_helper">Expressions view helper</label>
+			<label index="expression_view_helper_details">Additional demonstration of the "expressions" view helper (related to extension "expressions"). Assumes parameters are given in the URL such as "?tx_displaycontroller[foo]=bar".</label>
+			<label index="expression_evaluation">Evaluation of expression</label>
+		</languageKey>
+	</data>
+</T3locallang>

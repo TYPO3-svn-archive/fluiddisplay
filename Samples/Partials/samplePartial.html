@@ -1,0 +1,12 @@
+<li>
+		<!--If content element has no header, display "no title"-->
+	<f:if condition="{element.header} == ">
+		<f:then><em><f:link.page pageUid="{element.pid}" section="c{element.uid}">[No title]</f:link.page> (<f:format.date format="d.m.Y">@{element.crdate}</f:format.date>)</em></f:then>
+		<f:else><f:link.page pageUid="{element.pid}" section="c{element.uid}">{element.header}</f:link.page> (<f:format.date format="d.m.Y">@{element.crdate}</f:format.date>)</f:else>
+	</f:if>
+		<!--For elements of type "text", display a summary-->
+	<f:if condition="{0: element.CType} == {0: 'text'}">
+	<br />
+	<p><f:format.crop maxCharacters="100" append="..."><f:format.html>{element.bodytext}</f:format.html></f:format.crop></p>
+	</f:if>
+</li>
