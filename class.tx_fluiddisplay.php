@@ -48,6 +48,12 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	protected $counter = array();
 
 	/**
+	 *
+	 * @var tslib_cObj
+	 */
+	protected $localCObj;
+
+	/**
 	 * This method resets values for a number of properties
 	 * This is necessary because services are managed as singletons
 	 *
@@ -82,21 +88,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 		return $this->filter;
 	}
 
-	/**
-	 *
-	 * @var tslib_cObj
-	 */
-	protected $localCObj;
-
-	/**
-	 * This method is used to pass a TypoScript configuration (in array form) to the Data Consumer
-	 *
-	 * @param	array	$conf: TypoScript configuration for the extension
-	 */
-	public function setTypoScript($conf) {
-		$this->conf = $conf;
-	}
-
 	// Data Consumer interface methods
 
 	/**
@@ -129,16 +120,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	}
 
 	/**
-	 * This method is used to pass a filter to the Data Consumer
-	 *
-	 * @param 	array	$filter: Data Filter structure
-	 * @return	void
-	 */
-	public function setDataFilter($filter) {
-		$this->filter = $filter;
-	}
-
-	/**
 	 * This method is used to get a data structure
 	 *
 	 * @return 	array	$structure: standardised data structure
@@ -162,7 +143,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	 * @return	void
 	 */
 	public function setResult($result) {
-
 		$this->result = $result;
 	}
 
@@ -173,7 +153,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	 */
 	public function startProcess() {
 
-		// Loads the template file
+			// Loads the template file
 		$filePath = t3lib_div::getFileAbsFileName($this->consumerData['template']);
 
 		if (is_file($filePath)) {
@@ -183,7 +163,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			$view->assign('datastructure', $this->structure);
 			$this->result = $view->render();
 
-			// Hook that enables to post process the output
+				// Hook that enables to post process the output
 			if (preg_match_all('/#{3}HOOK\.(.+)#{3}/isU', $this->result, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $match) {
 					$hookName = $match[1];
@@ -195,9 +175,8 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 					}
 				}
 			}
-		}
-		else {
-			throw new tx_tesseract_exception('No template file has been found in Fluid Display', 1295025186);
+		} else {
+			throw new tx_tesseract_exception('No template file has been found in Fluid Display: ' . $filePath, 1295025186);
 		}
 	}
 }
