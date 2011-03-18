@@ -66,13 +66,4 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		'1' => array('showitem' => '')
 	)
 );
-
-t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.debug;10","","after:description");
-t3lib_extMgm::addToAllTCAtypes("tx_fluiddisplay_displays","--palette--;LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays.pagebrowser;20","","after:description");
-
-#$TCA['tx_fluiddisplay_displays']['palettes']['10'] = array(
-#	"showitem" => "debug_markers, debug_template_structure, debug_data_structure",
-#	"canNotCollapse" => 1
-#);
-
 ?>
