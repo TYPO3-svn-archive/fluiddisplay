@@ -26,10 +26,9 @@
  * $Id$
  * ************************************************************* */
 
-require_once(t3lib_extMgm::extPath('tesseract', 'services/class.tx_tesseract_feconsumerbase.php'));
-
 /**
- * Plugin 'Data Displayer' for the 'fluiddisplay' extension.
+ * This class is the actual data consumer for extension fluiddisplay
+ * It performs a rendering of the data structure using a Fluid template
  *
  * @author		Francois Suter (Cobweb) <typo3@cobweb.ch>
  * @author		Fabien Udriot <fabien.udriot@ecodev.ch>
@@ -48,12 +47,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	protected $counter = array();
 
 	/**
-	 *
-	 * @var tslib_cObj
-	 */
-	protected $localCObj;
-
-	/**
 	 * This method resets values for a number of properties
 	 * This is necessary because services are managed as singletons
 	 *
@@ -65,9 +58,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 		$this->uid = '';
 		$this->table = '';
 		$this->conf = array();
-		$this->datasourceFields = array();
-		$this->LLkey = 'default';
-		$this->fieldMarkers = array();
 	}
 
 	/**
@@ -147,20 +137,23 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	}
 
 	/**
-	 * This method starts whatever rendering process the Data Consumer is programmed to do
+	 * This method starts the rendering using the Fluid engine
 	 *
 	 * @return	void
 	 */
 	public function startProcess() {
 
-			// Loads the template file
+			// Calculate the full path to the template file
 		$filePath = t3lib_div::getFileAbsFileName($this->consumerData['template']);
 
 		if (is_file($filePath)) {
 
+				// Instantiate a Fluid stand-alone view and load the template file
 			$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
 			$view->setTemplatePathAndFilename($filePath);
+				// Assign the Tesseract Data Structure
 			$view->assign('datastructure', $this->structure);
+				// Render the result
 			$this->result = $view->render();
 
 				// Hook that enables to post process the output

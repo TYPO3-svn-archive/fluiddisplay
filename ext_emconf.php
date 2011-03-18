@@ -11,8 +11,8 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Template-based Data Display (Data Consumer)',
-	'description' => 'Use HTML-based templates to display any kind of data returned by a Data Provider, thanks a to user-friendly mapping interface.',
+	'title' => 'Fluid-based Data Consumer - Tesseract project',
+	'description' => 'Use Fluid-based templates to display any kind of data returned by a Data Provider. More info on http://www.typo3-tesseract.com.',
 	'category' => 'fe',
 	'author' => 'Francois Suter (Cobweb) / Fabien Udriot',
 	'author_email' => 'typo3@cobweb.ch',
@@ -32,6 +32,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '0.8',
 	'constraints' => array(
 		'depends' => array(
+			'typo3' => '4.5.0-0.0.0',
+			'tesseract' => '1.0.0-0.0.0',
 		),
 		'conflicts' => array(
 		),
