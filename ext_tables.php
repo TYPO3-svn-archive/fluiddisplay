@@ -19,7 +19,7 @@ $TCA['tx_fluiddisplay_displays'] = array(
 			'disabled' => 'hidden',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'Configuration/TCA/tx_fluiddisplay_displays.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/images/tx_fluiddisplay_displays.png',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/tx_fluiddisplay_displays.png',
 	),
 );
 
@@ -31,7 +31,7 @@ $addTemplateDisplayWizard = array(
 						'type' => 'script',
 						'title' => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:wizards.add_fluiddisplay',
 						'script' => 'wizard_add.php',
-						'icon' => 'EXT:fluiddisplay/Resources/Public/images/tx_fluiddisplay_displays.png',
+						'icon' => 'EXT:fluiddisplay/Resources/Public/Icons/add_fluiddisplay_wizard.png',
 						'params' => array(
 								'table' => 'tx_fluiddisplay_displays',
 								'pid' => '###CURRENT_PID###',
