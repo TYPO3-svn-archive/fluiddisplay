@@ -60,10 +60,10 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		),
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, template, description')
+		'0' => array('showitem' => 'hidden;;;;1-1-1, title;;1;;2-2-2, template')
 	),
 	'palettes' => array(
-		'1' => array('showitem' => '')
+		'1' => array('showitem' => 'description')
 	)
 );
 ?>

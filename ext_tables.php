@@ -8,13 +8,13 @@ t3lib_extMgm::allowTableOnStandardPages('tx_fluiddisplay_displays');
 	// TCA ctrl for new table
 $TCA['tx_fluiddisplay_displays'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays',		
+		'title'     => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays',
 		'label'     => 'title',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'default_sortby' => 'ORDER BY title',
-		'delete' => 'deleted',	
+		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
@@ -23,9 +23,10 @@ $TCA['tx_fluiddisplay_displays'] = array(
 	),
 );
 
+	// Add context sensitive help (csh) for this table
+t3lib_extMgm::addLLrefForTCAdescr('tx_fluiddisplay_displays', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_txfluiddisplaydisplays.xml');
 
-
-	// Add a wizard for adding a datadisplay
+	// Add a wizard for adding a fluiddisplay
 $addTemplateDisplayWizard = array(
 						'type' => 'script',
 						'title' => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:wizards.add_fluiddisplay',
@@ -38,10 +39,6 @@ $addTemplateDisplayWizard = array(
 							)
 						);
 $TCA['tt_content']['columns']['tx_displaycontroller_consumer']['config']['wizards']['add_fluiddisplay'] = $addTemplateDisplayWizard;
-
-
-
-
 
 	// Register fluiddisplay with the Display Controller as a Data Consumer
 t3lib_div::loadTCA('tt_content');

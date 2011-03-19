@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<!-- $Id: locallang_csh_txdataqueryqueries.xml 42568 2011-01-25 12:43:24Z francois $-->
+<T3locallang>
+	<meta type="array">
+		<description>Contents of fluiddisplay csh</description>
+		<type>CSH</type>
+		<csh_table>tx_fluiddisplay_displays</csh_table>
+		<fileId>EXT:fluiddisplay/Resources/Private/Language/locallang_csh_txfluiddisplaydisplays.xml</fileId>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".alttitle">Fluid Displays</label>
+			<label index=".description">Data Consumers relying on the Fluid templating engine for rendering</label>
+			<label index="hidden.alttitle">Hide</label>
+			<label index="hidden.description">This field is not actively used inside Tesseract.</label>
+			<label index="hidden.details">
+				This field is not considered by the existing components of Tesseract. It could be used to give a visual indication of an obsolete query.
+				May be used actively in the future or remove altogether.
+			</label>
+			<label index="title.alttitle">Title</label>
+			<label index="title.description">Some significant name or label for the template.</label>
+			<label index="description.alttitle">Description</label>
+			<label index="description.description">Purely descriptive field. Can be used for entering any necessary information about the template.</label>
+			<label index="template.alttitle">Template file</label>
+			<label index="template.description">Relative path to the Fluid template file.</label>
+			<label index="template.syntax">Use a path relative to the site root, poiting to an authorised folder (likely "fileadmin"). "EXT:"-like syntax is allowed.</label>
+			<label index="template.details">The directory name to the selected file will be used to search for Fluid partials.
+
+				Thus if the path to the file is "fileadmin/templates/fluiddisplay/foo.html", partials should be placed in "fileadmin/templates/fluiddisplay/Partials/". See the structure inside the "Samples" folder of extensions "fluiddisplay".
+			</label>
+		</languageKey>
+	</data>
+</T3locallang>
