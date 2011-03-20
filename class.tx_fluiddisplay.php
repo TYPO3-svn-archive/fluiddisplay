@@ -153,21 +153,15 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			$view->setTemplatePathAndFilename($filePath);
 				// Assign the Tesseract Data Structure
 			$view->assign('datastructure', $this->structure);
-				// Render the result
-			$this->result = $view->render();
-
-				// Hook that enables to post process the output
-			if (preg_match_all('/#{3}HOOK\.(.+)#{3}/isU', $this->result, $matches, PREG_SET_ORDER)) {
-				foreach ($matches as $match) {
-					$hookName = $match[1];
-					if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['postProcessResult'][$hookName])) {
-						foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['postProcessResult'][$hookName] as $className) {
-							$postProcessor = &t3lib_div::getUserObj($className);
-							$this->result = $postProcessor->postProcessResult($this->result, $hookName, $this);
-						}
-					}
+				// Define a hook allowing pre-processing of the view before rendering
+			if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['preProcessView'])) {
+				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['preProcessView'] as $className) {
+					$preProcessor = &t3lib_div::getUserObj($className);
+					$preProcessor->preProcessView($this->view, $this);
 				}
 			}
+				// Render the result
+			$this->result = $view->render();
 		} else {
 			throw new tx_tesseract_exception('No template file has been found in Fluid Display: ' . $filePath, 1295025186);
 		}
