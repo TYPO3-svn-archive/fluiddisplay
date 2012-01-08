@@ -3,8 +3,8 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2007 Francois Suter (Cobweb) <typo3@cobweb.ch>
- *  (c) 2008 Fabien Udriot <fabien.udriot@ecodev.ch>
+ *  (c) 2008-2012 Francois Suter (Cobweb) <typo3@cobweb.ch>
+ *                Fabien Udriot <fabien.udriot@ecodev.ch>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -66,7 +66,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	 * @return	array
 	 */
 	public function getController() {
-		return $this->pObj;
+		return $this->controller;
 	}
 
 	/**
