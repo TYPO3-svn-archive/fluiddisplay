@@ -61,15 +61,6 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	}
 
 	/**
-	 * Return the controller data.
-	 *
-	 * @return	array
-	 */
-	public function getController() {
-		return $this->controller;
-	}
-
-	/**
 	 * Return the filter data.
 	 *
 	 * @return	array
@@ -130,7 +121,8 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	/**
 	 * This method sets the result. Useful for hooks.
 	 *
-	 * @return	void
+	 * @param mixed $result Predefined result
+	 * @return void
 	 */
 	public function setResult($result) {
 		$this->result = $result;
@@ -139,7 +131,8 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	/**
 	 * This method starts the rendering using the Fluid engine
 	 *
-	 * @return	void
+	 * @throws tx_tesseract_exception
+	 * @return void
 	 */
 	public function startProcess() {
 
@@ -149,6 +142,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 		if (is_file($filePath)) {
 
 				// Instantiate a Fluid stand-alone view and load the template file
+				/** @var $view Tx_Fluid_View_StandaloneView */
 			$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
 			$view->setTemplatePathAndFilename($filePath);
 				// Assign the Tesseract Data Structure
@@ -157,7 +151,7 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['preProcessView'])) {
 				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['preProcessView'] as $className) {
 					$preProcessor = &t3lib_div::getUserObj($className);
-					$preProcessor->preProcessView($this->view, $this);
+					$preProcessor->preProcessView($view, $this);
 				}
 			}
 				// Render the result
