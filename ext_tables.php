@@ -18,6 +18,7 @@ $TCA['tx_fluiddisplay_displays'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
+		'searchFields' => 'title,description,template',
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'Configuration/TCA/tx_fluiddisplay_displays.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/tx_fluiddisplay_displays.png',
 	),
