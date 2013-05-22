@@ -136,10 +136,9 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 	 */
 	public function startProcess() {
 
-			// Calculate the full path to the template file
-		$filePath = t3lib_div::getFileAbsFileName($this->consumerData['template']);
-
-		if (is_file($filePath)) {
+			// Get the full path to the template file
+		try {
+			$filePath = tx_tesseract_utilities::getTemplateFilePath($this->consumerData['template']);
 
 				// Instantiate a Fluid stand-alone view and load the template file
 				/** @var $view Tx_Fluid_View_StandaloneView */
@@ -156,8 +155,15 @@ class tx_fluiddisplay extends tx_tesseract_feconsumerbase {
 			}
 				// Render the result
 			$this->result = $view->render();
-		} else {
-			throw new tx_tesseract_exception('No template file has been found in Fluid Display: ' . $filePath, 1295025186);
+
+		}
+		catch (Exception $e) {
+			$this->controller->addMessage(
+				$this->extKey,
+				$e->getMessage() . ' (' . $e->getCode() . ')',
+				'Error processing the view',
+				t3lib_FlashMessage::ERROR
+			);
 		}
 	}
 }
