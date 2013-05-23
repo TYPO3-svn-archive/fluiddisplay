@@ -2,11 +2,11 @@
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 $TCA['tx_fluiddisplay_displays'] = array(
-	'ctrl' => $TCA['tx_fluiddisplay_displays']['ctrl'],
+	'ctrl' => $GLOBALS['TCA']['tx_fluiddisplay_displays']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,title,description'
 	),
-	'feInterface' => $TCA['tx_fluiddisplay_displays']['feInterface'],
+	'feInterface' => $GLOBALS['TCA']['tx_fluiddisplay_displays']['feInterface'],
 	'columns' => array(
 		'hidden' => array(
 			'exclude' => 1,
@@ -52,7 +52,7 @@ $TCA['tx_fluiddisplay_displays'] = array(
 						'JSopenParams' => 'height=600,width=700,status=0,menubar=0,scrollbars=1',
 						'params' => array(
 							'blindLinkOptions' => 'page,url,mail,spec,folder',
-							'allowedExtensions' => $TYPO3_CONF_VARS['SYS']['textfile_ext'],
+							'allowedExtensions' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['textfile_ext'],
 						),
 					)
 				)

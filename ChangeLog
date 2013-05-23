@@ -2,6 +2,7 @@
 
 	* Added a substitute page title view helper, resolves #46234
 	* Cleaned up the sample template, resolves #48488
+	* Verified compatibility with TYPO3 6.0 and 6.1, resolves #47519
 
 2013-05-22 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 

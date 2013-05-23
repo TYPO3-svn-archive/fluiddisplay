@@ -6,7 +6,7 @@ if (!defined ('TYPO3_MODE')) {
 t3lib_extMgm::allowTableOnStandardPages('tx_fluiddisplay_displays');
 
 	// TCA ctrl for new table
-$TCA['tx_fluiddisplay_displays'] = array(
+$GLOBALS['TCA']['tx_fluiddisplay_displays'] = array(
 	'ctrl' => array(
 		'title'     => 'LLL:EXT:fluiddisplay/Resources/Private/Language/locallang_db.xml:tx_fluiddisplay_displays',
 		'label'     => 'title',
