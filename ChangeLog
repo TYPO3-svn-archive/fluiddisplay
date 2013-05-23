@@ -1,3 +1,7 @@
+2013-05-23 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Added a substitute page title view helper, resolves #46234
+
 2013-05-22 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Added FAL support, resolves #48471
